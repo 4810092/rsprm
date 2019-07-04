@@ -13,5 +13,6 @@ interface TruckView : BaseView {
     fun getTruckComment(): String
     fun setTruckNameError(errorId: Int)
     fun setTruckPriceError(errorId: Int)
+    fun setTruckCommentError(errorId: Int)
 
 }

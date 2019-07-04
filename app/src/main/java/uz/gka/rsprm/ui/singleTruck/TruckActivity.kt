@@ -63,6 +63,9 @@ class TruckActivity : AppCompatActivity(), TruckView {
         truckPrice.error = getString(errorId)
     }
 
+    override fun setTruckCommentError(errorId: Int) {
+        truckComment.error = getString(errorId)
+    }
 
     override fun setTruckData(truckModel: TruckModel) {
 

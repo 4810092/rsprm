@@ -2,6 +2,7 @@ package uz.gka.rsprm.ui.main
 
 import android.app.Activity
 import android.content.Intent
+import android.text.TextUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -35,7 +36,15 @@ class MainPresenter(val view: MainView) : TrucksAdapter.ItemsClickListener {
                 override fun onSuccess(response: Response<ArrayList<TruckModel>>) {
                     super.onSuccess(response)
                     if (response.isSuccessful) {
-                        view.getAdapter().items = response.body()!!.toMutableList()
+
+                        view.getAdapter().items =
+
+                            response.body()!!.filter {
+                            return@filter !TextUtils.isEmpty(it.id)
+                                    && !TextUtils.isEmpty(it.nameTruck)
+                                    && !TextUtils.isEmpty(it.price)
+                                    && !TextUtils.isEmpty(it.comment)
+                        }.toMutableList()
                     } else {
                         view.showError(response.message())
                     }

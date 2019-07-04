@@ -66,8 +66,10 @@ class TruckPresenter(val view: TruckView) {
         if (view.getTruckPrice().isEmpty())
             view.setTruckPriceError(R.string.error_empty)
 
+        if (view.getTruckComment().isEmpty())
+            view.setTruckCommentError(R.string.error_empty)
 
-        return view.getTruckName().isEmpty() || view.getTruckPrice().isEmpty()
+        return view.getTruckName().isEmpty() || view.getTruckPrice().isEmpty() || view.getTruckComment().isEmpty()
     }
 
     private fun editIsSuccessful(truckModel: TruckModel?) {
