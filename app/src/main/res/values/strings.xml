@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Rsprm</string>
+    <string name="add">Добавить</string>
+    <string name="truck_name_hint">Название грузовика</string>
+    <string name="truck_price_hint">Цена грузовика</string>
+    <string name="truck_comment_hint">Комментарий</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="error_response_is_empty">Пустой ответ.</string>
+    <string name="error">Ошибка</string>
+    <string name="error_empty">Не должно быть пустым</string>
+</resources>
