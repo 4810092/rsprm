@@ -63,13 +63,27 @@ class TruckPresenter(val view: TruckView) {
         if (view.getTruckName().isEmpty())
             view.setTruckNameError(R.string.error_empty)
 
-        if (view.getTruckPrice().isEmpty())
+        var priceIsValid = true
+        if (view.getTruckPrice().isEmpty()) {
             view.setTruckPriceError(R.string.error_empty)
+        } else {
+            var price = 0.0
+            try {
+                price = view.getTruckPrice().toDouble()
+            } catch (e: Exception) {
+                priceIsValid = false
+                view.setTruckPriceError(R.string.error_not_a_number)
+            }
+            if (price <= 0) {
+                priceIsValid = false
+                view.setTruckPriceError(R.string.error_price_must_bigger_than_zero)
+            }
+        }
 
         if (view.getTruckComment().isEmpty())
             view.setTruckCommentError(R.string.error_empty)
 
-        return view.getTruckName().isEmpty() || view.getTruckPrice().isEmpty() || view.getTruckComment().isEmpty()
+        return view.getTruckName().isEmpty() || view.getTruckPrice().isEmpty() || view.getTruckComment().isEmpty() || !priceIsValid
     }
 
     private fun editIsSuccessful(truckModel: TruckModel?) {

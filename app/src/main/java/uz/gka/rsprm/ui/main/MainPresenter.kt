@@ -40,11 +40,19 @@ class MainPresenter(val view: MainView) : TrucksAdapter.ItemsClickListener {
                         view.getAdapter().items =
 
                             response.body()!!.filter {
-                            return@filter !TextUtils.isEmpty(it.id)
-                                    && !TextUtils.isEmpty(it.nameTruck)
-                                    && !TextUtils.isEmpty(it.price)
-                                    && !TextUtils.isEmpty(it.comment)
-                        }.toMutableList()
+                                return@filter !TextUtils.isEmpty(it.id)
+                                        && !TextUtils.isEmpty(it.nameTruck)
+                                        && !TextUtils.isEmpty(it.price)
+                                        && !TextUtils.isEmpty(it.comment)
+                            }.filter {
+                                val price: Double
+                                try {
+                                    price = it.price!!.toDouble()
+                                } catch (e: Exception) {
+                                    return@filter false
+                                }
+                                return@filter price > 0
+                            }.toMutableList()
                     } else {
                         view.showError(response.message())
                     }

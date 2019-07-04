@@ -9,4 +9,6 @@
     <string name="error_response_is_empty">Пустой ответ.</string>
     <string name="error">Ошибка</string>
     <string name="error_empty">Не должно быть пустым</string>
+    <string name="error_not_a_number">Не числовое значение</string>
+    <string name="error_price_must_bigger_than_zero">Цена должна быть больше 0</string>
 </resources>
